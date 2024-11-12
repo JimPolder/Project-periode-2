@@ -2,7 +2,7 @@
 
 //home
 function Homesound(){
-    let soundvar = new Audio("../audio/SFX/Home.wav"); 
+    let soundvar = new Audio("Home.wav"); 
     soundvar.play();
 }
 
