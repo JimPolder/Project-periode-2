@@ -15,7 +15,6 @@ const preview4r =  `4r.png`
 //home
 homebtn.addEventListener("mouseover", function(){
     previewfnOn(previewhome)
-    Homesound()
     
 })
 homebtn.addEventListener("mouseout", function(){

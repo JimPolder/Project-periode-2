@@ -1,0 +1,86 @@
+.startbutton{
+    /** centre **/
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    /** styling **/
+    height: 150px;
+    width: 300px;
+    font-size: 50px;
+    background-color: orange;
+    color: red;
+    border-radius: 30%;
+}
+
+.startbutton:hover{
+    background-color: rgba(255, 166, 0, 0.582);
+}
+
+.gamecontainer{
+    /** centre **/
+    margin: 0;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    /** styling **/
+    background-color: rgb(255, 255, 255);
+    width: 1000px;
+    height: 700px;
+    opacity: 50%;
+    color: black;
+}
+
+.onepbutton{
+    /** centre **/
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    /** styling **/
+    width: 200px;
+    height: 100px;
+    border-radius: 12px;
+    background-color: blue;
+    color: white;
+}
+
+.onepbutton:hover{
+    background-color: rgba(0, 0, 255, 0.705);
+}
+
+.twopbutton{
+    /** centre **/
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    /** styling **/
+    width: 200px;
+    height: 100px;
+    border-radius: 12px;
+    background-color: red;
+    color: white;
+}
+
+.twopbutton:hover{
+    background-color: rgba(255, 0, 0, 0.705);
+}
+
+.or{
+    /** centre **/
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
