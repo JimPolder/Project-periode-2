@@ -78,22 +78,39 @@ for (let i = 0; i < pokemonNameArray.length; i++) {
     //pkmnbuttons
     pkmnbtn.forEach((pkmnbtneach, index) => {
         pkmnbtneach.addEventListener('click', function() {
-            console.log(index+1)
-            choosepokemon(index+1)
+            let confirm = false
+            statscreen()
+            if (confirm === true){
+                console.log(index+1)
+                choosepokemon(index+1) 
+            }
+            
         })
     })
 
-                        
+    function statscreen(image, name, HP, atk, def, spatk, spdef, speed, total){
+        container.innerHTML+=`<div class="statscreen"></div>`
+        const statscreen = document.querySelector(".statscreen")
+
+        statscreen.innerHTML+=`<p>aaaa</p>`
+
+    }
+     
         } //<-- loop end
         let p1team = []
+        let p1teamnumbers = []
+
         function choosepokemon(pkmnchosen){
             console.log(pokemonNameArray[pkmnchosen-1])
             player1counter+=1
+
             if (player1counter <= 6){
                 document.querySelector(`.pkmn${player1counter}`).innerHTML = `<img src="${pokemonImageArray[pkmnchosen-1]}" width ="80px"/></button>`
                 p1team.push(pokemonNameArray[pkmnchosen-1])
+                p1teamnumbers.push(pkmnchosen)
             } else {
                 console.log(p1team)
+                console.log(p1teamnumbers)
             }
   
         }
