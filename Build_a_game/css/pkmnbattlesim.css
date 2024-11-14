@@ -137,17 +137,30 @@
     background-color: transparent;
     border: none;
 }
-
-.statscreen{
-    width: 300px;
-    height: 500px;
-   /** centre **/
-   margin: 0;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   -ms-transform: translate(-50%, -50%);
-   transform: translate(-50%, -50%);
-    background-color: aqua;
-}
 /** pkmn buttons end **/
+
+
+.statscreenvar{
+    width: 300px;
+    height: 600px;
+    margin: 0;
+    position: absolute;
+    top: 61%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: aqua;
+
+    text-align: center;
+    border-radius: 12px;
+}
+
+.statsconf{
+    background-color: greenyellow;
+    border-radius: 12px;
+}
+
+.statscanc{
+    background-color: red;
+    border-radius: 12px;
+}

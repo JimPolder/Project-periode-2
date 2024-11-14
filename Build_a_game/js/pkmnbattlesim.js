@@ -78,21 +78,45 @@ for (let i = 0; i < pokemonNameArray.length; i++) {
     //pkmnbuttons
     pkmnbtn.forEach((pkmnbtneach, index) => {
         pkmnbtneach.addEventListener('click', function() {
-            let confirm = false
-            statscreen()
-            if (confirm === true){
+            let confirmvar = false
+            statscreen(pokemonImageArray[index], pokemonNameArray[index], 1, 1, 1, 1, 1, 1)
+            if (confirmvar === true){
                 console.log(index+1)
                 choosepokemon(index+1) 
+                confirmvar = false
             }
             
         })
     })
+   
 
-    function statscreen(image, name, HP, atk, def, spatk, spdef, speed, total){
-        container.innerHTML+=`<div class="statscreen"></div>`
-        const statscreen = document.querySelector(".statscreen")
+    function statscreen(image, name, HP, atk, def, spatk, spdef, speed){
+        
+         container.innerHTML+=`<div class="statscreen"></div>`
+        const statscreenvar = document.querySelector(".statscreen")
 
-        statscreen.innerHTML+=`<p>aaaa</p>`
+        statscreenvar.innerHTML+=(`<h1>${name}</h1>
+                                <img src="${image}" width="150px"/></button>
+                                <p>HP: ${HP}</p>
+                                <p>ATK: ${atk}</p>
+                                <p>DEF: ${def}</p>
+                                <p>SP ATK: ${spatk}</p>
+                                <p>SP DEF: ${spdef}</p>
+                                <p>SPEED: ${speed}</p>
+                                <p>total: ${HP + atk + def + spatk + spdef + speed}</p>
+                                <button class="statsconf">confirm</button>
+                                <button class="statscanc">Cancel</button>
+                                `)
+
+        statsconf = document.querySelector(".statsconf")
+        statscanc = document.querySelector(".statscanc")
+
+        //confirm
+        statsconf.addEventListener("click", function(){
+            statscreenvar.innerHTML=""
+            statscreenvar.remove()
+            confirmvar = true
+        })
 
     }
      
