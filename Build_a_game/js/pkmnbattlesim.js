@@ -27,7 +27,19 @@ function startclicked(){
 }
 
 function initiategame(playeramount){
+    let player1counter = 0
+    let player2counter = 0
     console.log(playeramount,"player game")
+
+    gamecontainer.innerHTML+= `<div class="chosenpkmngrid">
+    <div class="pkmn1"><button class="pkmn1btn"><img src="./img/pokeball.png" width ="40px"/></button></div>
+    <div class="pkmn2"><button class="pkmn2btn"><img src="./img/pokeball.png" width ="40px"/></button></div>
+    <div class="pkmn3"><button class="pkmn3btn"><img src="./img/pokeball.png" width ="40px"/></button></div>
+    <div class="pkmn4"><button class="pkmn4btn"><img src="./img/pokeball.png" width ="40px"/></button></div>
+    <div class="pkmn5"><button class="pkmn5btn"><img src="./img/pokeball.png" width ="40px"/></button></div>
+    <div class="pkmn6"><button class="pkmn6btn"><img src="./img/pokeball.png" width ="40px"/></button></div>
+    </div>`
+
     document.querySelector(".onepbutton").style.display = "none"
     document.querySelector(".twopbutton").style.display = "none"
     document.querySelector(".or").style.display = "none"
@@ -54,20 +66,35 @@ for (let i = 0; i < pokemonNameArray.length; i++) {
                         <button class="pkmnbtn"><img src="${pokemonImageArray[i]}" class="${pokemonNameArray[i]}" width="150px"/></button>
                         </div>`)
     container.style.backgroundColor = "red"
+
+    
     
     pkmnbuttonarray.push(pokemonNameArray[i])
     let pkmnbtn = document.querySelectorAll(".pkmnbtn")
     pkmnbtn[i].style.backgroundColor = "transparent"
     pkmnbtn[i].style.border = "none"
 
+
     //pkmnbuttons
     pkmnbtn.forEach((pkmnbtneach, index) => {
         pkmnbtneach.addEventListener('click', function() {
             console.log(index+1)
+            choosepokemon(index+1)
         })
     })
 
                         
         } //<-- loop end
-
+        let p1team = []
+        function choosepokemon(pkmnchosen){
+            console.log(pokemonNameArray[pkmnchosen-1])
+            player1counter+=1
+            if (player1counter <= 6){
+                document.querySelector(`.pkmn${player1counter}`).innerHTML = `<img src="${pokemonImageArray[pkmnchosen-1]}" width ="80px"/></button>`
+                p1team.push(pokemonNameArray[pkmnchosen-1])
+            } else {
+                console.log(p1team)
+            }
+  
+        }
     }
