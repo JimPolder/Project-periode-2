@@ -32,6 +32,7 @@ function initiategame(playeramount){
     document.querySelector(".twopbutton").style.display = "none"
     document.querySelector(".or").style.display = "none"
     //POKEDEX CODE
+
     //array containing the names of all the first 151 pokemon
 const pokemonNameArray = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander', 'charmeleon', 'charizard', 'squirtle', 'wartortle', 'blastoise', 'caterpie', 'metapod', 'butterfree', 'weedle', 'kakuna', 'beedrill', 'pidgey', 'pidgeotto', 'pidgeot', 'rattata', 'raticate', 'spearow', 'fearow', 'ekans', 'arbok', 'pikachu', 'raichu', 'sandshrew', 'sandslash', 'nidoran-f', 'nidorina', 'nidoqueen', 'nidoran-m', 'nidorino', 'nidoking', 'clefairy', 'clefable', 'vulpix', 'ninetales', 'jigglypuff', 'wigglytuff', 'zubat', 'golbat', 'oddish', 'gloom', 'vileplume', 'paras', 'parasect', 'venonat', 'venomoth', 'diglett', 'dugtrio', 'meowth', 'persian', 'psyduck', 'golduck', 'mankey', 'primeape', 'growlithe', 'arcanine', 'poliwag', 'poliwhirl', 'poliwrath', 'abra', 'kadabra', 'alakazam', 'machop', 'machoke', 'machamp', 'bellsprout', 'weepinbell', 'victreebel', 'tentacool', 'tentacruel', 'geodude', 'graveler', 'golem', 'ponyta', 'rapidash', 'slowpoke', 'slowbro', 'magnemite', 'magneton', 'farfetchd', 'doduo', 'dodrio', 'seel', 'dewgong', 'grimer', 'muk', 'shellder', 'cloyster', 'gastly', 'haunter', 'gengar', 'onix', 'drowzee', 'hypno', 'krabby', 'kingler', 'voltorb', 'electrode', 'exeggcute', 'exeggutor', 'cubone', 'marowak', 'hitmonlee', 'hitmonchan', 'lickitung', 'koffing', 'weezing', 'rhyhorn', 'rhydon', 'chansey', 'tangela', 'kangaskhan', 'horsea', 'seadra', 'goldeen', 'seaking', 'staryu', 'starmie', 'mr-mime', 'scyther', 'jynx', 'electabuzz', 'magmar', 'pinsir', 'tauros', 'magikarp', 'gyarados', 'lapras', 'ditto', 'eevee', 'vaporeon', 'jolteon', 'flareon', 'porygon', 'omanyte', 'omastar', 'kabuto', 'kabutops', 'aerodactyl', 'snorlax', 'articuno', 'zapdos', 'moltres', 'dratini', 'dragonair', 'dragonite', 'mewtwo', 'mew'];
 
@@ -42,63 +43,31 @@ const pokemonImageArray = ['https://raw.githubusercontent.com/PokeAPI/sprites/ma
 const pokemonTypeArray = ['grass/poison', 'grass/poison', 'grass/poison', 'fire', 'fire', 'fire/flying', 'water', 'water', 'water', 'bug', 'bug', 'bug/flying', 'bug/poison', 'bug/poison', 'bug/poison', 'normal/flying', 'normal/flying', 'normal/flying', 'normal', 'normal', 'normal/flying', 'normal/flying', 'poison', 'poison', 'electric', 'electric', 'ground', 'ground', 'poison', 'poison', 'poison/ground', 'poison', 'poison', 'poison/ground', 'fairy', 'fairy', 'fire', 'fire', 'normal/fairy', 'normal/fairy', 'poison/flying', 'poison/flying', 'grass/poison', 'grass/poison', 'grass/poison', 'bug/grass', 'bug/grass', 'bug/poison', 'bug/poison', 'ground', 'ground', 'normal', 'normal', 'water', 'water', 'fighting', 'fighting', 'fire', 'fire', 'water', 'water', 'water/fighting', 'psychic', 'psychic', 'psychic', 'fighting', 'fighting', 'fighting', 'grass/poison', 'grass/poison', 'grass/poison', 'water/poison', 'water/poison', 'rock/ground', 'rock/ground', 'rock/ground', 'fire', 'fire', 'water/psychic', 'water/psychic', 'electric/steel', 'electric/steel', 'normal/flying', 'normal/flying', 'normal/flying', 'water', 'water/ice', 'poison', 'poison', 'water', 'water/ice', 'ghost/poison', 'ghost/poison', 'ghost/poison', 'rock/ground', 'psychic', 'psychic', 'water', 'water', 'electric', 'electric', 'grass/psychic', 'grass/psychic', 'ground', 'ground', 'fighting', 'fighting', 'normal', 'poison', 'poison', 'ground/rock', 'ground/rock', 'normal', 'grass', 'normal', 'water', 'water', 'water', 'water', 'water', 'water/psychic', 'psychic/fairy', 'bug/flying', 'ice/psychic', 'electric', 'fire', 'bug', 'normal', 'water', 'water/flying', 'water/ice', 'normal', 'normal', 'water', 'electric', 'fire', 'normal', 'rock/water', 'rock/water', 'rock/water', 'rock/water', 'rock/flying', 'normal', 'ice/flying', 'electric/flying', 'fire/flying', 'dragon', 'dragon', 'dragon/flying', 'psychic', 'psychic'];
 
 
-gamecontainer.innerHTML+= `<div class="topbar"></div>`
 gamecontainer.innerHTML+= `<div class="container"></div>`
-const topbar = document.querySelector(".topbar")
-topbar.innerHTML = (`<label>pokemon</label>
-<input type="text" class="pokemon" required/>
-<label>type</label>
-<input type="text" class="type" required/>
-<button class="submit-button">submit</button>`)
 const container = document.querySelector(".container")
-container.innerHTML = ("")
-const myButton = document.querySelector('.submit-button');
-const pkmn = document.querySelector(".pokemon")
-const type = document.querySelector(".type")
-
-
-
-function loop(){
-    for (let i = 0; i < pokemonNameArray.length; i++) {
-        container.innerHTML += (`<div class="pokemon">
+let pkmnbuttonarray = []
+for (let i = 0; i < pokemonNameArray.length; i++) {
+    
+    container.innerHTML += (`<div class="pokemon">
                         <h2>${pokemonNameArray[i]}</h2>
                         <p>${pokemonTypeArray[i]}</p>
-                        <img src="${pokemonImageArray[i]}" width="150px"/>
-                    </div>`)
-        }
-}
-
-myButton.addEventListener('click', function(){
-    container.innerHTML = ""
-    for (let i = 0; i < pokemonNameArray.length; i++) {
-        if (pkmn.checkValidity() === true && type.checkValidity() === true){
-            if (pokemonNameArray[i].includes(pkmn.value) && pokemonTypeArray[i].includes(type.value)){
-            container.innerHTML += (`<div class="pokemon">
-                            <h2>${pokemonNameArray[i]}</h2>
-                            <p>${pokemonTypeArray[i]}</p>
-                            <img src="${pokemonImageArray[i]}" width="150px"/>
+                        <button class="pkmnbtn"><img src="${pokemonImageArray[i]}" class="${pokemonNameArray[i]}" width="150px"/></button>
                         </div>`)
-            }
-            }   
-        
-             if (pkmn.checkValidity() === true && type.checkValidity() === false){
-                if (pokemonNameArray[i].includes(pkmn.value)){
-                container.innerHTML += (`<div class="pokemon">
-                                <h2>${pokemonNameArray[i]}</h2>
-                                <p>${pokemonTypeArray[i]}</p>
-                                <img src="${pokemonImageArray[i]}" width="150px"/>
-                            </div>`) 
-        }
+    container.style.backgroundColor = "red"
+    
+    pkmnbuttonarray.push(pokemonNameArray[i])
+    let pkmnbtn = document.querySelectorAll(".pkmnbtn")
+    pkmnbtn[i].style.backgroundColor = "transparent"
+    pkmnbtn[i].style.border = "none"
+
+    //pkmnbuttons
+    pkmnbtn.forEach((pkmnbtneach, index) => {
+        pkmnbtneach.addEventListener('click', function() {
+            console.log(index+1)
+        })
+    })
+
+                        
+        } //<-- loop end
+
     }
-    if (pkmn.checkValidity() === false && type.checkValidity() === true){
-        if (pokemonTypeArray[i].includes(type.value)){
-        container.innerHTML += (`<div class="pokemon">
-                        <h2>${pokemonNameArray[i]}</h2>
-                        <p>${pokemonTypeArray[i]}</p>
-                        <img src="${pokemonImageArray[i]}" width="150px"/>
-                    </div>`)
-        }
-        }  
-}
-})
-}
