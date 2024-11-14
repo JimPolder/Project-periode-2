@@ -75,67 +75,82 @@ for (let i = 0; i < pokemonNameArray.length; i++) {
     pkmnbtn[i].style.border = "none"
 
 
+    outsideindex = 0
+
     //pkmnbuttons
-    pkmnbtn.forEach((pkmnbtneach, index) => {
-        pkmnbtneach.addEventListener('click', function() {
-            let confirmvar = false
-            statscreen(pokemonImageArray[index], pokemonNameArray[index], 1, 1, 1, 1, 1, 1)
-            if (confirmvar === true){
-                console.log(index+1)
-                choosepokemon(index+1) 
-                confirmvar = false
-            }
-            
+    btnloop()
+    function btnloop(){
+        pkmnbtn.forEach((pkmnbtneach, index) => {
+            pkmnbtneach.addEventListener('click', function() {
+                outsideindex = index
+                statscreen(pokemonImageArray[index], pokemonNameArray[index], 1, 1, 1, 1, 1, 1)
+                
+            })
         })
-    })
-   
-
-    function statscreen(image, name, HP, atk, def, spatk, spdef, speed){
-        
-         container.innerHTML+=`<div class="statscreen"></div>`
-        const statscreenvar = document.querySelector(".statscreen")
-
-        statscreenvar.innerHTML+=(`<h1>${name}</h1>
-                                <img src="${image}" width="150px"/></button>
-                                <p>HP: ${HP}</p>
-                                <p>ATK: ${atk}</p>
-                                <p>DEF: ${def}</p>
-                                <p>SP ATK: ${spatk}</p>
-                                <p>SP DEF: ${spdef}</p>
-                                <p>SPEED: ${speed}</p>
-                                <p>total: ${HP + atk + def + spatk + spdef + speed}</p>
-                                <button class="statsconf">confirm</button>
-                                <button class="statscanc">Cancel</button>
-                                `)
-
-        statsconf = document.querySelector(".statsconf")
-        statscanc = document.querySelector(".statscanc")
-
-        //confirm
-        statsconf.addEventListener("click", function(){
-            statscreenvar.innerHTML=""
-            statscreenvar.remove()
-            confirmvar = true
-        })
-
     }
-     
-        } //<-- loop end
-        let p1team = []
-        let p1teamnumbers = []
 
-        function choosepokemon(pkmnchosen){
-            console.log(pokemonNameArray[pkmnchosen-1])
-            player1counter+=1
-
-            if (player1counter <= 6){
-                document.querySelector(`.pkmn${player1counter}`).innerHTML = `<img src="${pokemonImageArray[pkmnchosen-1]}" width ="80px"/></button>`
-                p1team.push(pokemonNameArray[pkmnchosen-1])
-                p1teamnumbers.push(pkmnchosen)
+    function statscreen(image, name, HP, atk, def, spatk, spdef, speed) {
+        // Clear previous stat screen if it exists
+        const existingStatScreen = document.querySelector(".statscreen");
+        if (existingStatScreen) {
+            existingStatScreen.remove();
+        }
+        
+        const statscreen = document.createElement("div");
+        statscreen.className = "statscreen";  // add a class for the new stat screen
+        gamecontainer.appendChild(statscreen);
+    
+        statscreen.innerHTML += (`
+            <h1>${name}</h1>
+            <img src="${image}" width="150px"/>
+            <p>HP: ${HP}</p>
+            <p>ATK: ${atk}</p>
+            <p>DEF: ${def}</p>
+            <p>SP ATK: ${spatk}</p>
+            <p>SP DEF: ${spdef}</p>
+            <p>SPEED: ${speed}</p>
+            <p>Total: ${HP + atk + def + spatk + spdef + speed}</p>
+            <button class="statsconf">Confirm</button>
+            <button class="statscanc">Cancel</button>
+        `);
+    
+        const statsconf = statscreen.querySelector(".statsconf");
+        const statscanc = statscreen.querySelector(".statscanc");
+    
+        // Confirm the selection for the chosen Pokémon
+        statsconf.addEventListener("click", function() {
+            statscreen.remove();  // Remove stat screen
+            choosepokemon(outsideindex + 1);  // Choose the Pokémon
+        });
+    
+        // Cancel the selection
+        statscanc.addEventListener("click", function() {
+            statscreen.remove();  // Remove stat screen
+        });
+    }
+    
+    p1team = []
+    p1teamnumbers = []
+    function choosepokemon(pkmnchosen) {
+        console.log(pokemonNameArray[pkmnchosen - 1]);
+        player1counter += 1;
+    
+        if (player1counter <= 6) {
+            document.querySelector(`.pkmn${player1counter}`).innerHTML = `<img src="${pokemonImageArray[pkmnchosen - 1]}" width ="80px"/>`;
+            p1team.push(pokemonNameArray[pkmnchosen - 1]);
+            p1teamnumbers.push(pkmnchosen);
+    
+            if (player1counter < 6) {
+                // Allow player to select another Pokémon
+                outsideindex = 0;  // Reset the outside index to allow new selections
             } else {
-                console.log(p1team)
-                console.log(p1teamnumbers)
+                console.log("Final Team: ", p1team);
+                console.log("Final Team Numbers: ", p1teamnumbers);
+                // Proceed to the next logic or indicate team selection is complete
             }
-  
+        } else {
+            console.log("full");
         }
     }
+}
+}
